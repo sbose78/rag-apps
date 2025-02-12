@@ -1,0 +1,11 @@
+streamlit
+openai
+langchain
+langchain-community
+bs4
+tiktoken
+faiss-cpu==1.7.4
+requests==2.31.0
+python-telegram-bot==13.15
+appengine-python-standard
+sentence-transformers
