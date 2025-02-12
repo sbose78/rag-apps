@@ -21,28 +21,6 @@ st.write(
     "You can also learn how to build this app step by step by [following our tutorial](https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps)."
 )
 
-class CustomGraniteLLM(LLM):
-    url: str  # URL of the Granite model endpoint
-    headers: Optional[Mapping[str, str]] = None  # Optional headers for authentication
-    max_tokens: int = 500  # Max tokens to generate
-    temperature: float = 0.7  # Sampling temperature
-
-    def _call(self, prompt: str, stop: Optional[List[str]] = None) -> str:
-        # Prepare the payload for the API request
-        payload = {
-            "prompt": prompt,
-            "max_tokens": self.max_tokens,
-            "temperature": self.temperature,
-        }
-        # Make the API request
-        response = requests.post(self.url, json=payload, headers=self.headers)
-        response.raise_for_status()
-        # Extract the generated text from the response
-        return response.json()["generated_text"]
-
-    @property
-    def _llm_type(self) -> str:
-        return "custom_granite_llm"
 
 # Ask user for their OpenAI API key via `st.text_input`.
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
